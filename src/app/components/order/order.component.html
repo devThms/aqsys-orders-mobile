@@ -1,0 +1,50 @@
+<div class="order">
+
+    <ion-item-divider color="primary">
+        <ion-label>
+            <b>Datos de Orden</b>
+        </ion-label>
+    </ion-item-divider>
+
+    <ion-item lines="none">
+        <ion-label>
+            <h5><b>Fecha Ejecución: </b> {{ order.executionDate }}</h5>
+            <h5><b>Cliente: </b> {{ order.customer.bussinessPartner.firstName + ' ' + order.customer.bussinessPartner.lastName }}</h5>
+            <h5><b>Telefono: </b> {{ order.customer.bussinessPartner.telephone }}</h5>
+        </ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+        <ion-label text-wrap>
+            <h5>
+                <b>Problema Reportado: </b> <br> {{ order.theoryDescription }}
+            </h5>
+        </ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+        <ion-tabs>
+            <ion-tab-bar slot="bottom">
+                <ion-tab-button>
+                    <ion-icon name="checkmark-outline"></ion-icon>
+                    <ion-label>Confirmar</ion-label>
+                </ion-tab-button>
+
+                <ion-tab-button>
+                    <ion-icon name="close-outline"></ion-icon>
+                    <ion-label>Rechazar</ion-label>
+                </ion-tab-button>
+
+                <ion-tab-button>
+                    <ion-icon name="list-outline"></ion-icon>
+                    <ion-label>Detalle</ion-label>
+                </ion-tab-button>
+            </ion-tab-bar>
+        </ion-tabs>
+        <!-- <ion-buttons>
+            <ion-icon slot="start" name="checkmark-done-outline"></ion-icon>
+            <ion-icon slot="end" name="list-outline"></ion-icon>
+        </ion-buttons> -->
+    </ion-item>
+
+</div>

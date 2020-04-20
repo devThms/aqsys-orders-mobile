@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-icon slot="icon-only" name="documents-outline"></ion-icon>
+        </ion-buttons>
+
+        <ion-title>
+            Ordenes de Servicio
+        </ion-title>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content color="light" [fullscreen]="true">
+
+    <!-- Refresh -->
+
+    <!-- Orders[] -->
+    <app-orders [orders]="orders"></app-orders>
+
+</ion-content>
