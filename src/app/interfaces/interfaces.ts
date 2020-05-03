@@ -1,5 +1,10 @@
-export interface Orders {
+export interface OrdersResp {
   orders: Order[];
+}
+
+export interface OrderResp {
+  message: string;
+  order: Order;
 }
 
 export interface Order {
@@ -44,8 +49,8 @@ export interface BussinessPartner {
 
 export interface User {
   id?: string;
-  firstName?: string;
-  lastName?: string;
   userName?: string;
+  password?: string;
+  role?: string;
   status?: string;
 }

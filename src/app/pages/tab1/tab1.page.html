@@ -1,8 +1,8 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
+    <ion-toolbar color="secondary">
 
         <ion-buttons slot="start">
-            <ion-icon slot="icon-only" name="documents-outline"></ion-icon>
+            <ion-icon slot="icon-only" name="newspaper"></ion-icon>
         </ion-buttons>
 
         <ion-title>
@@ -15,6 +15,9 @@
 <ion-content color="light" [fullscreen]="true">
 
     <!-- Refresh -->
+    <ion-refresher slot="fixed" (ionRefresh)="refresher($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
 
     <!-- Orders[] -->
     <app-orders [orders]="orders"></app-orders>

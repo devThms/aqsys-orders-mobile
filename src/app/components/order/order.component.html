@@ -1,50 +1,40 @@
-<div class="order">
+<ion-item-sliding [ngClass]="colorType">
 
-    <ion-item-divider color="primary">
-        <ion-label>
-            <b>Datos de Orden</b>
-        </ion-label>
-    </ion-item-divider>
 
-    <ion-item lines="none">
-        <ion-label>
-            <h5><b>Fecha Ejecución: </b> {{ order.executionDate }}</h5>
-            <h5><b>Cliente: </b> {{ order.customer.bussinessPartner.firstName + ' ' + order.customer.bussinessPartner.lastName }}</h5>
-            <h5><b>Telefono: </b> {{ order.customer.bussinessPartner.telephone }}</h5>
-        </ion-label>
-    </ion-item>
+    <div (click)="goDetail(order.id)">
 
-    <ion-item lines="none">
-        <ion-label text-wrap>
-            <h5>
-                <b>Problema Reportado: </b> <br> {{ order.theoryDescription }}
-            </h5>
-        </ion-label>
-    </ion-item>
+        <!-- <ion-item-divider [color]="colorType">
+            <ion-label>
+                <b>Datos de Orden No. #</b>
+            </ion-label>
+        </ion-item-divider> -->
 
-    <ion-item lines="none">
-        <ion-tabs>
-            <ion-tab-bar slot="bottom">
-                <ion-tab-button>
-                    <ion-icon name="checkmark-outline"></ion-icon>
-                    <ion-label>Confirmar</ion-label>
-                </ion-tab-button>
+        <ion-item lines="none">
+            <ion-label>
+                <h5><b>Orden No. {{ order.id.substring(24) }}</b></h5> <br>
+                <h5><b>Fecha Ejecución: </b> {{ order.executionDate }}</h5>
+                <h5><b>Cliente: </b> {{ order.customer.bussinessPartner.firstName + ' ' + order.customer.bussinessPartner.lastName }}</h5>
+                <h5><b>Telefono: </b> {{ order.customer.bussinessPartner.telephone }}</h5> <br>
+                <h5>
+                    <b>Problema Reportado: </b> <br> {{ order.theoryDescription }}
+                </h5>
+            </ion-label>
+        </ion-item>
 
-                <ion-tab-button>
-                    <ion-icon name="close-outline"></ion-icon>
-                    <ion-label>Rechazar</ion-label>
-                </ion-tab-button>
+    </div>
 
-                <ion-tab-button>
-                    <ion-icon name="list-outline"></ion-icon>
-                    <ion-label>Detalle</ion-label>
-                </ion-tab-button>
-            </ion-tab-bar>
-        </ion-tabs>
-        <!-- <ion-buttons>
-            <ion-icon slot="start" name="checkmark-done-outline"></ion-icon>
-            <ion-icon slot="end" name="list-outline"></ion-icon>
-        </ion-buttons> -->
-    </ion-item>
+    <ion-item-options side="start">
+        <ion-item-option (click)="presentAlertApprove(order)">
+            <!-- <ion-icon slot="icon-only" name="heart"></ion-icon> -->
+            <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+        </ion-item-option>
+    </ion-item-options>
 
-</div>
+    <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="presentAlertReject(order)">
+            <!-- <ion-icon slot="icon-only" name="trash"></ion-icon> -->
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-item-option>
+    </ion-item-options>
+
+</ion-item-sliding>

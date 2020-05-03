@@ -1,0 +1,110 @@
+<ion-header>
+    <ion-toolbar color="secondary">
+        <ion-buttons>
+            <ion-back-button slot="start">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-back-button>
+            <ion-title>Orden No. {{ orderId }} </ion-title>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list class="fondo">
+        <ion-item class="detail" lines="none">
+            <ion-avatar slot="start">
+                <img src="../../../assets/icon/customer-icon.png">
+            </ion-avatar>
+            <ion-label>
+                <h5><b>Cliente: </b> {{ customerBp.firstName + ' ' + customerBp.lastName }} </h5>
+                <h5><b>NIT: </b> {{ customerBp.nit }} </h5>
+                <h5><b>Telefono: </b> {{ customerBp.telephone }} </h5>
+                <h5><b>Dirección: </b> {{ customerBp.direction }} </h5>
+            </ion-label>
+        </ion-item>
+
+        <ion-item class="detail" lines="none">
+            <ion-avatar slot="start">
+                <img src="../../../assets/icon/technical-icon.png">
+            </ion-avatar>
+            <ion-label>
+                <h5><b>Técnico: </b> {{ technicalBp.firstName + ' ' + technicalBp.lastName }} </h5>
+                <h5><b>Telefono: </b> {{ technicalBp.telephone }} </h5>
+            </ion-label>
+        </ion-item>
+
+        <ion-item-divider color="secondary">
+            <ion-label>
+                <b>Orden de Servicio</b>
+            </ion-label>
+        </ion-item-divider>
+
+        <ion-item class="detail" lines="none">
+            <ion-avatar slot="start">
+                <img src="../../../assets/icon/order-icon.png">
+            </ion-avatar>
+            <ion-label text-wrap>
+                <h5><b>Fecha de creación: </b> {{ order.creationDate }} </h5>
+                <h5><b>Fecha de ejecución: </b> {{ order.executionDate }} </h5>
+                <h5><b>Días de servicio: </b> {{ order.dayOfService }} </h5>
+                <h5><b>Problema reportado: </b> <br> {{ order.theoryDescription }} </h5>
+            </ion-label>
+        </ion-item>
+
+        <form ngNativeValidate #fOrder="ngForm" (ngSubmit)="updateOrder(fOrder.value)" class="form-horizontal" autocomplete="off">
+
+            <ion-input [ngModel]="order.id" name="id" type="hidden"></ion-input>
+
+            <ion-item class="detail" lines="none">
+                <ion-avatar slot="start">
+                    <img src="../../../assets/icon/order-icon.png">
+                </ion-avatar>
+                <ion-label position="floating"><b>Problema encontrado:</b></ion-label>
+                <ion-textarea [ngClass]="{'disabled': order.status === 'CONFIRMED'}" rows="4" [ngModel]="order.realDescription" name="realDescription" placeholder="Ingrese el problema encontrado..." required>
+                </ion-textarea>
+            </ion-item>
+
+
+            <ion-item-divider color="secondary">
+                <ion-label>
+                    <b>Observaciones</b>
+                </ion-label>
+            </ion-item-divider>
+
+            <ion-item class="detail" lines="none">
+                <ion-avatar slot="start">
+                    <img src="../../../assets/icon/suggest-icon.png">
+                </ion-avatar>
+                <ion-label position="floating"><b>Observaciones del técnico</b></ion-label>
+                <ion-textarea [ngClass]="{'disabled': order.status === 'CONFIRMED'}" rows="4" [ngModel]="order.technicalObservation" name="technicalObservation" placeholder="Ingrese el problema encontrado..." required>
+                </ion-textarea>
+            </ion-item>
+
+            <ion-item class="detail" lines="none">
+                <ion-avatar slot="start">
+                    <img src="../../../assets/icon/suggest-icon.png">
+                </ion-avatar>
+                <ion-label position="floating"><b>Observaciones del cliente</b></ion-label>
+                <ion-textarea [ngClass]="{'disabled': order.status === 'CONFIRMED'}" rows="4" [ngModel]="order.customerObservation" name="customerObservation" placeholder="Ingrese el problema encontrado...">
+                </ion-textarea>
+            </ion-item>
+
+
+            <ion-button *ngIf="order.status === 'ACTIVE'" type="submit" color="success" expand="block">
+                <ion-icon name="paper-plane-outline"></ion-icon>
+                Confirmar Orden
+            </ion-button>
+
+            <!-- <ion-button *ngIf="order.status === 'CONFIRMED'" (click)="presentAlertApprove(order)" color="success">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                Aceptar
+            </ion-button>
+
+            <ion-button *ngIf="order.status === 'CONFIRMED'" (click)="presentAlertReject(order)" color="danger">
+                <ion-icon name="close-circle-outline"></ion-icon>
+                Rechazar
+            </ion-button> -->
+        </form>
+    </ion-list>
+</ion-content>
